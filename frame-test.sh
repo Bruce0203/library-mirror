@@ -33,3 +33,5 @@ for letter in "${ARR[@]}"; do
   sed "s/VERSION/$letter/g" <<< "org.spigotmc:spigot:VERSION-R0.1-SNAPSHOT
 $LIB" > "spigot-$letter"
 done
+
+"com.mojang:authlib:1.5.21" > authlib
