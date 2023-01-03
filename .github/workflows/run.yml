@@ -1,0 +1,61 @@
+name: run
+on:
+  push:
+env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    GITHUB_ACTOR: ${{ github.actor }}
+jobs:
+  run:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - run: |
+
+          sudo apt install maven -y
+          git clone -b ${GITHUB_REF##*/} --single-branch https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          cd $(basename ${{ github.repository }} /)
+            function mirror() {
+            echo "---" 
+            echo $1
+            echo $2
+            echo $3
+            artifact=$1
+            repoUrl=$2
+            artifactId=$3
+            rm -rf _work
+            mkdir _work
+            cd _work
+            git init
+            git config --global user.name "${{ github.actor }}"
+            git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+            mvn org.apache.maven.plugins:maven-dependency-plugin:3.4.0:get -e -X -U --update-snapshots -Dartifact="$artifact" -DremoteRepositories="$repoUrl" -Dmaven.repo.local="." -Dmaven.home="."
+            git add .
+            git commit -m "install done"
+            git branch $artifactId
+            git switch $artifactId
+            git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} $artifactId --force
+            cd ..
+          }
+        
+          cd libraries
+          for filename in *; do
+          rm -rf $filename-clone
+          cp -r $filename $filename-clone
+          filename=$filename-clone
+          artifact=$(head -n 1 $filename)
+          tail -n +2 "$filename" > $filename-clone
+          rm -r $filename
+          mv $filename-clone $filename
+          echo $(sed ':a;N;$!ba;s/\n/,/g' $filename) > $filename
+          repoUrl=$(head $filename)
+          echo $repoUrl > $filename 
+          echo $(sed "s/\$_ACTOR/$GITHUB_ACTOR/g" $filename) > $filename
+          echo $(sed "s/\$_TOKEN/$GITHUB_TOKEN/g" $filename) > $filename
+          repoUrl=$(head $filename)
+          cd ..
+          mirror "$artifact" "$repoUrl" $(basename $filename '-clone')
+          cd libraries
+          done
+          cd ..
