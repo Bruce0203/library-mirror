@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>org.spigotmc</groupId>
+  <artifactId>spigot</artifactId>
+  <version>1.14.4-R0.1-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20190803.153520</timestamp>
+      <buildNumber>4</buildNumber>
+    </snapshot>
+    <lastUpdated>20200712233403</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.14.4-R0.1-20190803.153520-4</value>
+        <updated>20190803153520</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.14.4-R0.1-20190803.153520-4</value>
+        <updated>20190803153520</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
