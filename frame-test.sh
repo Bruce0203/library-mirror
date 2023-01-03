@@ -35,4 +35,4 @@ $LIB" > "spigot-$letter"
 done
 
 echo "com.mojang:authlib:1.5.21
-$LIB" > authlib
+$LIB" > "authlib"
