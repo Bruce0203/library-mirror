@@ -34,4 +34,5 @@ for letter in "${ARR[@]}"; do
 $LIB" > "spigot-$letter"
 done
 
-"com.mojang:authlib:1.5.21" > authlib
+echo "com.mojang:authlib:1.5.21
+$LIB" > authlib
