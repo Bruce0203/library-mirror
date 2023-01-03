@@ -31,7 +31,7 @@ jobs:
             git config --global user.name "${{ github.actor }}"
             git config --global user.email "${{ github.actor }}@users.noreply.github.com"
             mvn org.apache.maven.plugins:maven-dependency-plugin:3.4.0:get --quiet --update-snapshots -Dartifact="$artifact" -DremoteRepositories="$repoUrl" -Dmaven.repo.local="." -Dmaven.home="."
-            git add . --quiet
+            git add .
             git commit -m "install done" --quiet
             git branch $artifactId --quiet
             git switch $artifactId --quiet
