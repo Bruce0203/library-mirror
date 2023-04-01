@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>net.md-5</groupId>
+  <artifactId>bungeecord-parent</artifactId>
+  <version>1.12-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20180712.114540</timestamp>
+      <buildNumber>97</buildNumber>
+    </snapshot>
+    <lastUpdated>20180712114540</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.12-20180712.114540-97</value>
+        <updated>20180712114540</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
